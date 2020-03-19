@@ -28,6 +28,13 @@ func (c *itemsController) Create(w http.ResponseWriter, r *http.Request) {
 		http_utils.RespondError(w, err.Status, err)
 		return
 	}
+	sellerId := oauth.GetCallerId(r)
+	if sellerId == 0 {
+		respErr := rest_errors.NewUnauthorizedError("Unauthorized Error!")
+		http_utils.RespondError(w, respErr.Status(), respErr)
+		return
+	}
+
 	//requestBody, err := ioutil.ReadAll(r.Body)
 	//if err != nil {
 	//	restErr := rest_errors.NewBadRequestError("invalid request body")
@@ -48,7 +55,7 @@ func (c *itemsController) Create(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	itemRequest.Seller = oauth.GetCallerId(r)
+	itemRequest.Seller = sellerId
 	result, createErr := services.ItemService.Create(itemRequest)
 	if createErr != nil {
 		http_utils.RespondError(w, createErr.Status(), createErr)
