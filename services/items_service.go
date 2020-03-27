@@ -3,7 +3,6 @@ package services
 import (
 	"github.com/tv2169145/store_items-api/domain/items"
 	"github.com/tv2169145/store_utils-go/rest_errors"
-	"net/http"
 )
 
 var (
@@ -28,5 +27,9 @@ func(s *itemService) Create(item items.Item) (*items.Item, rest_errors.RestErr) 
 }
 
 func (s *itemService) Get(id string) (*items.Item, rest_errors.RestErr) {
-	return nil, rest_errors.NewRestError("implement it", http.StatusNotImplemented, "not_implement", nil)
+	item := items.Item{Id:id}
+	if err := item.Get(); err != nil {
+		return nil, err
+	}
+	return &item, nil
 }

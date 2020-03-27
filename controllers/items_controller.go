@@ -2,12 +2,14 @@ package controllers
 
 import (
 	"encoding/json"
+	"github.com/gorilla/mux"
 	"github.com/tv2169145/store_items-api/domain/items"
 	"github.com/tv2169145/store_items-api/services"
 	"github.com/tv2169145/store_items-api/utils/http_utils"
 	"github.com/tv2169145/store_oauth-go/oauth"
 	"github.com/tv2169145/store_utils-go/rest_errors"
 	"net/http"
+	"strings"
 )
 
 var (
@@ -65,5 +67,13 @@ func (c *itemsController) Create(w http.ResponseWriter, r *http.Request) {
 }
 
 func (c *itemsController) Get(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	itemId := strings.TrimSpace(vars["id"])
 
+	item, err := services.ItemService.Get(itemId)
+	if err != nil {
+		http_utils.RespondError(w, err)
+		return
+	}
+	http_utils.RespondJson(w, http.StatusOK, item)
 }
