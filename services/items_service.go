@@ -2,6 +2,7 @@ package services
 
 import (
 	"github.com/tv2169145/store_items-api/domain/items"
+	"github.com/tv2169145/store_items-api/domain/queries"
 	"github.com/tv2169145/store_utils-go/rest_errors"
 )
 
@@ -12,6 +13,7 @@ var (
 type ItemsServiceInterface interface {
 	Create(items.Item) (*items.Item, rest_errors.RestErr)
 	Get(string) (*items.Item, rest_errors.RestErr)
+	Search(queries.EsQuery) ([]items.Item, rest_errors.RestErr)
 }
 
 type itemService struct {
@@ -32,4 +34,9 @@ func (s *itemService) Get(id string) (*items.Item, rest_errors.RestErr) {
 		return nil, err
 	}
 	return &item, nil
+}
+
+func (s *itemService) Search(query queries.EsQuery) ([]items.Item, rest_errors.RestErr) {
+	dao := items.Item{}
+	return dao.Search(query)
 }
