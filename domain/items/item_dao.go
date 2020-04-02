@@ -67,3 +67,17 @@ func (i *Item) Search(query queries.EsQuery) ([]Item, rest_errors.RestErr) {
 	}
 	return items, nil
 }
+
+func (i *Item) Delete(id string) rest_errors.RestErr {
+	if err := elasticsearch.Client.Delete(indexItems, typeItem, id); err != nil {
+		return rest_errors.NewInternalServerError(err.Error(), err)
+	}
+	return nil
+}
+
+func (i *Item) Update() rest_errors.RestErr {
+	if err := elasticsearch.Client.Update(indexItems, typeItem, i.Id, i); err != nil {
+		return rest_errors.NewInternalServerError(err.Error(), err)
+	}
+	return nil
+}

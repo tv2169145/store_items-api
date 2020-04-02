@@ -2,6 +2,7 @@ package elasticsearch
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"github.com/olivere/elastic"
 	"github.com/tv2169145/store_utils-go/logger"
@@ -17,6 +18,8 @@ type esClientInterface interface{
 	Index(string, string, interface{}) (*elastic.IndexResponse, error)
 	Get(string, string, string) (*elastic.GetResult, error)
 	Search(string, elastic.Query) (*elastic.SearchResult, error)
+	Delete(string, string, string) error
+	Update(string, string, string, interface{}) error
 }
 
 type esClient struct {
@@ -69,4 +72,44 @@ func (c *esClient) Search(index string, query elastic.Query) (*elastic.SearchRes
 		return nil, err
 	}
 	return result, nil
+}
+
+func (c *esClient) Delete(index, docType, id string) error {
+	ctx := context.Background()
+	result, err := c.client.Delete().Index(index).Type(docType).Id(id).Do(ctx)
+	if err != nil {
+		logger.Error(fmt.Sprintf("error when trying to delete document in index %s and id %s", index, id), err)
+		return err
+	}
+	if result.Result != "deleted" {
+		err := errors.New("database error")
+		logger.Error("error when trying to delete item by id", err)
+		return err
+	}
+
+	return nil
+}
+
+func (c *esClient) Update(index, docType, id string, item interface{}) error {
+	ctx := context.Background()
+	//updateData := make(map[string]interface{})
+	//if strings.TrimSpace(item.Status) != "" {
+	//	updateData["status"] = item.Status
+	//}
+	//if strings.TrimSpace(item.Description.PlainText) != "" {
+	//	updateData["description"] = item.Description
+	//}
+	//if strings.TrimSpace(item.Title) != "" {
+	//	updateData["title"] = item.Title
+	//}
+	//updateData["available_quantity"] = item.AvailableQuantity
+
+	result, err := c.client.Update().Index(index).Type(docType).Id(id).Doc(item).Do(ctx)
+	if err != nil {
+		logger.Error(fmt.Sprintf("error when trying to update document in index %s and id %s", index, id), err)
+		return err
+	}
+	fmt.Println(result)
+
+	return nil
 }
