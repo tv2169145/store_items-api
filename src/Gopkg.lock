@@ -31,7 +31,7 @@
   version = "v0.7.1"
 
 [[projects]]
-  digest = "1:286dd444e95e0a575b99d4374644d4c77540c858ba0687b8e6444c039578fec2"
+  digest = "1:02a61fd003e5331d628c1db44fe74ba2357447de589f7338c7f80c22067caecb"
   name = "github.com/olivere/elastic"
   packages = [
     ".",
@@ -39,8 +39,8 @@
     "uritemplates",
   ]
   pruneopts = "UT"
-  revision = "7bcfeceabbb3ed7f24c2133e7db86ac920bab7b6"
-  version = "v6.2.28"
+  revision = "22a6dce11b4cff8c75bdf574aaf77866cb735110"
+  version = "v6.2.29"
 
 [[projects]]
   digest = "1:9e1d37b58d17113ec3cb5608ac0382313c5b59470b94ed97d0976e69c7022314"
@@ -52,22 +52,22 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:775c5c21e57ca5d09226fcdaf05b54fb9ed919983ed6529e71b1b529da121ccd"
+  digest = "1:643cf84035fc927313f67c8a5c6e4116eb2f6892af0bdb0fc56a0a2ef5708fdd"
   name = "github.com/tv2169145/store_oauth-go"
   packages = ["oauth"]
   pruneopts = "UT"
-  revision = "b8b2f0b81904c618735ef387780cbc264cb7b8a7"
+  revision = "1971cbede7c0b9f6e4b0c89d73c4c8aa1a8332cd"
 
 [[projects]]
   branch = "master"
-  digest = "1:39e2842e83cf6ed89e74045dc64023163f798113d6d215ec388377010aa97637"
+  digest = "1:b199740c0ef5f94091481a91f42bb3324fc918979a926c1a875f7437bb2d8b23"
   name = "github.com/tv2169145/store_utils-go"
   packages = [
     "logger",
     "rest_errors",
   ]
   pruneopts = "UT"
-  revision = "1dbc8c97a562aefb1e5a5fda63b54faab98f48d4"
+  revision = "cbde5a9f30aa0d6024d79ea055169ae1f60aa2fb"
 
 [[projects]]
   digest = "1:19525e48b45af69339bd7c2812137dbd1e650a78fc09c7c75482e307d51aa28d"

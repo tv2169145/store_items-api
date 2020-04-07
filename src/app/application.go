@@ -2,7 +2,7 @@ package app
 
 import (
 	"github.com/gorilla/mux"
-	"github.com/tv2169145/store_items-api/clients/elasticsearch"
+	"github.com/tv2169145/store_items-api/src/clients/elasticsearch"
 	"net/http"
 	"time"
 )

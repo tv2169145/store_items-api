@@ -5,8 +5,8 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/tv2169145/store_items-api/clients/elasticsearch"
-	"github.com/tv2169145/store_items-api/domain/queries"
+	"github.com/tv2169145/store_items-api/src/clients/elasticsearch"
+	"github.com/tv2169145/store_items-api/src/domain/queries"
 	"github.com/tv2169145/store_utils-go/rest_errors"
 	"strings"
 )

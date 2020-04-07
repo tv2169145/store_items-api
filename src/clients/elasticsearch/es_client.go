@@ -33,6 +33,7 @@ func Init() {
 		elastic.SetHealthcheckInterval(10*time.Second),
 		elastic.SetErrorLog(log),
 		elastic.SetInfoLog(log),
+		elastic.SetSniff(false),
 	)
 	if err != nil {
 		panic(err)

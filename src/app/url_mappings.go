@@ -1,7 +1,7 @@
 package app
 
 import (
-	"github.com/tv2169145/store_items-api/controllers"
+	"github.com/tv2169145/store_items-api/src/controllers"
 	"net/http"
 )
 
